@@ -1,0 +1,37 @@
+@charset "utf-8";
+/* CSS Document */
+
+	
+
+@media (min-width: 1120px) and (max-width: 1980px) {
+
+  .container,
+  .navbar-fixed-top .container,
+  .navbar-fixed-bottom .container {
+    width: 960px !important;
+	padding:10px;
+  }
+  
+ }
+@media (max-width: 979px) {
+	
+	#masthead .nav-collapse .nav {margin-top: -10px !important;}
+	#masthead .topbar .navbar-inner .container { margin-top: -5px !important;}
+}
+/*@media (min-width: 959px) and (max-width: 1119px) {
+ 
+  .container,
+  .navbar-fixed-top .container,
+  .navbar-fixed-bottom .container {
+    width: 940px;
+}
+  
+  @media (min-width: 768px) and (max-width: 959px) {
+ 
+  .container,
+  .navbar-fixed-top .container,
+  .navbar-fixed-bottom .container {
+    width: 940px;
+}
+*/
+

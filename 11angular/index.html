@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>New Mexico Health Insurance Exchange</title>
+  <!-- ANGULAR -->
+  <script src="angular/angular.js"></script>
+  <script src="angular-route/angular-route.js"></script>
+  <script src="script.js"></script>
+
+  <!-- BOOTSTRAP & FONTAWESOME -->
+  <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.css" />
+  <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.0/css/font-awesome.css" />
+
+
+  <link href="http://fonts.googleapis.com/css?family=Droid+Sans" rel="stylesheet" type="text/css">
+  <!-- jQuery -->
+  <script type="text/javascript" src="../js/jquery.js"></script>
+  <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
+  <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+  <script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="../css/bootstrap.min.css">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="../font-awesome/css/font-awesome.min.css">
+  <!-- Other CSS that may overide Bootstrap -->
+  <link rel="stylesheet" href="../css/ghixcustom.css">
+  <link rel="stylesheet" href="../css/theme-NM.css">
+
+</head>
+
+<body ng-app="newMexico">
+
+  <header>
+    <div id="masthead" class="topbar">
+    <div class="navbar navbar-fixed-top" id="masthead" role="banner">
+      <div class="navbar-inner">
+        <div class="container" style="padding-top:6px;padding-bottom:8px">
+          <button data-target=".nav-collapse" data-toggle="collapse" class="btn btn-navbar" type="button">
+            <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
+          </button><!-- button nav collapse -->
+          <ul class="nav">
+            <li>
+              <a href="/hix/ticketmgmt/ticket/ticketlist"><img class="brand" src="../img/logoIdaho.png" alt="New Mexico Health Insurance Exchange" class="margin10"><span style="display: none;">Getinsured Health Exchange</span></a>
+            </li>
+          </ul><!-- nav -->
+          <div class="nav-collapse collapse pull-right margin0">
+            <ul class="nav">
+              <li><a href="#sidebar" name="skip" class="skip-nav" accesskey="n">Skip Navigation</a></li><!-- all -->
+              <li id="masthead-inbox"><a href="/hix/inbox/home">Inbox</a></li>    <!-- all -->
+              <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="menubar">Get Assistance <b class="caret"></b></a>
+                <ul class="dropdown-menu" role="menu">
+                  <li role="menuitem"><a href="/hix/faq/admin">Help Center</a></li>
+                </ul><!-- menu -->
+              </li><!-- dropdown -->
+              <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="menubar">My Account <b class="caret"></b></a>
+                <ul class="dropdown-menu" role="menu">
+                  <li id="masthead-account-settings" role="menuitem"><a href="/hix/account/user/accountsettings">Account Settings</a></li>
+                  <li id="masthead-dashboard" role="menuitem"><a href="/hix/account/user/switchDefRole">Dashboard</a></li>
+                  <li role="menuitem"><a href="/hix/account/user/logout">Logout</a></li><!-- all -->
+                </ul><!-- menu -->
+              </li><!-- dropdown -->
+            </ul><!-- nav -->
+          </div><!-- nav-collapse -->
+        </div><!-- container ends -->
+      </div><!-- navbar-inner ends -->
+    </div><!-- navbar  ends -->
+  </div>
+    <a href="#incarceration">Incarceration</a>
+    <a href="#gain">Gain of Min Coverage</a>
+  </header>
+
+  <!-- MAIN CONTENT AND INJECTED VIEWS -->
+  <div id="main">
+    <div ng-view></div>
+  </div>
+
+  <!-- this is where shit will be injected -->
+  <div>
+    <label class="radio-inline">
+      <input type="checkbox" value="yesbnfnvghm" ng-model="test123"> Add Details of Your Spouse
+    </label>
+    <label class="radio-inline">
+      <input type="checkbox" value="nosadfasdfsadf" ng-model="test456"> Select a Life Change Event
+    </label>
+  </div>
+
+  <pre>{{household}}</pre>
+  <div class="span12" ng-show="test123">
+    <div blah></div>
+  </div>
+
+  <div class="span12" ng-show="test456">
+    <div yoyo></div>
+  </div>
+
+  <div class="span12">
+    <div ng-repeat="member in household.members"> {{ member.firstName }} </div>
+  </div>
+
+
+  </body>
+  </html>

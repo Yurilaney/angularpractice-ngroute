@@ -1,0 +1,411 @@
+// Nav
+// -------------------------
+ul.nav-list > li > a {
+    border-bottom: 1px solid transparent;
+}
+#sidebar {
+	a{
+		.icon-cog{ color: inherit;}
+	}
+	
+	#quick-links {
+		border-bottom:1px, solid, #ddd;
+		padding: 0;
+		a{
+			border-bottom:1px, solid, transparent;	
+		}
+	}
+	.nav-list > span {
+		background: none;
+		border-bottom:1px, solid, transparent;
+		color: #138F9D;
+		font-size: 1em;
+		margin-right: -15px;
+		padding: 14px;
+	}
+}
+.mask {
+    opacity: 0.8;
+    padding: 10px 0 0 55px;
+    position: absolute;
+    z-index: 11;
+}
+.mask img{
+    float: left;
+    position: relative;
+    right: -3px;
+    top: 8px;
+}
+
+
+//-------------------------------
+// Portal
+//-------------------------------
+#plan-summary,
+#emp-contribution,
+.widget {
+	.data-display {
+		h5 {
+			width: 266px;
+			background: #d0e9ff;
+			padding: 6px 10px;
+			margin-left: -19px;
+			margin-top: -19px;
+			margin-bottom: 0;
+		}
+	}
+	.dl-horizontal {
+		dt {
+			text-align: left;
+			width: 189px;
+			font-weight: normal;
+		}
+		dd {
+    		margin-left: 191px;
+    		text-align: right;
+		}
+		dl {
+			margin-bottom: 5px;
+			border-bottom: 1px solid #ddd;
+			padding-bottom: 10px;
+			dt {
+				margin-left: 10px;
+				width: 179px;
+			}
+			
+			
+		}
+		dt#c-s-d { //employee portal
+				width: 133px !important;
+			}
+		dd#coverage-s-date { //employee portal
+				margin-left: 175px !important;				
+		}
+	}
+
+}
+#sample-plan-summary .info-header,
+#sample-plan-summary .well { opacity: 0.3;}
+
+.plan-selected .dl-horizontal dt {
+    text-align: left;
+    width: 150px;
+    font-weight: normal;
+}
+.plan-selected .dl-horizontal dd {
+    margin-left: 155px;
+    text-align: right;
+}
+/**
+* My Information
+*/
+
+#myinfo-edit {
+	padding: 2px 12px;
+}
+
+#myinfo {
+	.dl-horizontal {
+		dt {
+			width: 42% !important;
+		}
+		dd {
+			margin-left: 45%;
+		}		
+		#worksite address {
+			margin-top: 8px;
+			margin-bottom: 7px !important;
+		}
+	}
+}
+
+/**
+* Edit My Information
+*/
+form#edit-myinfo,
+form#edit-mydependents {
+	.control-label{
+		width: 219px !important;
+	}
+	.controls {
+		margin-left: 220px !important;
+	}
+	.dl-horizontal dd {
+		margin-left: 239px !important;
+	}
+	.dl-horizontal{
+		dt{
+			width: 225px !important;
+		}
+	}
+}
+
+
+
+
+// ########################################################################################################
+// ########################################################################################################
+// #
+// #
+// #         *MEMBER PORTAL
+// #         *PROGRESS BAR
+// #         
+// #
+// #
+// ########################################################################################################	
+	
+@portalProgressBarBG:        		#d8ebd6; 
+@portalProgressBarBorder:    		#d8ebd6;
+@portalProgressBarLinkColor: 		#48a951;
+@portalProgressBarActiveBG:  		#E97B00; //#DA7B00 border;
+@portalProgressBarDisabledBG: 		#e6eaeb;
+@portalWellBorder:					#E3E3E3;
+@portalWellBlurbBg:					#F9F9F9; //#E8E8E8
+@portalWellBlurbText:				#666666;
+@portalWidgetHeader: 				#E8E8E8;
+@portalWidgetHeaderSecondary:       #D9EDF7;
+
+
+@portalProgressBarLinkActiveColor: 	@white; 
+@portalProgressBarFontSize:  		15px;
+@portalProgressBarHeight: 			40px;
+
+
+.border (@x: 1px, @style: solid, @color: #000){
+	border-top : @x @style @color;
+	border-right : @x @style @color;
+	border-bottom: @x @style @color;
+	border-left : @x @style @color;
+}
+
+.border-radius-custom (@topleft: 5px, @topright: 5px, @bottomleft: 5px, @bottomright: 5px) {
+    -webkit-border-radius: @topleft @topright @bottomright @bottomleft;
+    -moz-border-radius: @topleft @topright @bottomright @bottomleft;
+    border-radius: @topleft @topright @bottomright @bottomleft;
+}
+.box-shadow(@shadows) {
+    -webkit-box-shadow: @shadows;
+    -moz-box-shadow: @shadows;
+    box-shadow: @shadows;
+}
+.box-shadow-custom (@x: 0px, @y: 3px, @blur: 5px, @alpha: 0.5) {
+    -webkit-box-shadow: @x @y @blur rgba(0, 0, 0, @alpha);
+    -moz-box-shadow: @x @y @blur rgba(0, 0, 0, @alpha);
+    box-shadow: @x @y @blur rgba(0, 0, 0, @alpha);
+}
+.color (@x) {
+    color: @x;
+}
+
+
+
+
+
+#portal {
+	#step-progress{
+		margin: 95px 0 0 0;
+		background: @white;
+		#progress-bar {
+		    ul{
+		    	margin:0;
+		    	padding:0;
+		    	li{
+					list-style: none;
+	    			float: left;
+	    			font-weight: 600;
+	    			font-size: @portalProgressBarFontSize;
+	    			color: #999;
+					text-align: center;
+					width: 25%;
+					position:relative;
+					&:after { //this is the border that goes through the numbers
+						content: "";
+						border: 8px solid #e6eaeb;
+						position: relative;
+						bottom: 60px;
+						left: 0;
+						display: block;
+					}
+					.s-no { //this is numbers
+						position: absolute;
+						background: @white;
+						border-radius: 50%;
+						width: 20px;
+						height: 20px;
+						padding: 10px;
+						text-align: center;
+						top: -55px;
+						left: 32%;
+						border:3px solid #e6eaeb;
+						font-weight: 600;
+						z-index: 1;
+						color: @portalProgressBarActiveBG;
+					}
+	    			&.active-state { // styles for the active circle step
+	    				position: relative;
+	    				color: @portalProgressBarActiveBG;
+	    				.s-no { //numbers are getting larger when is active
+	    					background: @portalProgressBarActiveBG;
+	    					color: @white;
+	    					font-size: @portalProgressBarFontSize+13px;
+	    					line-height: 22px;
+	    					border-color: darken(@portalProgressBarActiveBG, 3%);
+	    				}
+	    				.step-text {
+	    					&:after {
+								content: "You Are Here";
+								position: absolute;
+								font-size: 10px;
+								border: 1px solid @portalProgressBarActiveBG;
+								background: @portalProgressBarActiveBG;
+								color: @white;
+								width: 95px;
+								height: 24px;
+								line-height: 24px;
+								top: -90px;
+								left: 16%;
+								border-radius: 5px;
+								font-weight: 300;
+								text-transform: uppercase;	
+								letter-spacing: 1px;    					
+							}
+							&:before { //this is indicator with arrow
+							    content: "";
+					            position: absolute;
+					            top: -66px;
+					            right: 50%;
+					            width: 0;
+					            height: 0;
+					            border-left: 7px solid transparent;
+					            border-right: 7px solid transparent;
+					            border-top: 10px solid @portalProgressBarActiveBG;
+		  					}
+	    				}
+	    			}
+	    			&.disabled-state {
+	    				color: darken(@portalProgressBarDisabledBG, 3%);
+	    				.s-no { //numbers are getting larger when is active
+	    					background: lighten(@portalProgressBarDisabledBG, 5%);
+	    					color: darken(@portalProgressBarDisabledBG, 5%);
+	    					font-size: @portalProgressBarFontSize+13px;
+	    					line-height: 22px;
+	    					border-color: darken(@portalProgressBarDisabledBG, 3%);
+	    				}
+	    			}
+	    			&.completed-state { // styles for the completed circle step
+	    				position: relative;
+	    				.s-no {
+	    					color: @white; // to hide the number
+	    				}
+	    				.step-text {
+	    					&:after {
+	    						content: "\f00c";
+	    						font-family: FontAwesome;
+	    						font-size: 22px;
+	    						position: absolute;
+	    						top: -41px;
+	    						left: 63px;
+	    						z-index: 1;
+	    						color: @portalProgressBarActiveBG;
+	    					}
+	    				}
+	    			}
+		    		&:last-child { //last element shorter to align with the elements below
+			    		width:22.6%;
+			    	}
+		    	}
+		    }
+		}		
+	}
+	
+
+
+// ########################################################################################################
+// ########################################################################################################
+// #
+// #
+// #
+// #         *OEP MESSAGE
+// #         
+// #
+// #
+// ########################################################################################################
+	#oep-msg {
+		button {
+			margin-top: 15%;
+		}
+
+	}
+
+// ########################################################################################################
+// ########################################################################################################
+// #
+// #
+// #         
+// #         *PROGRESS BAR - CUSTOM WELL - NO BACKGROUND
+// #         
+// #
+// #
+// ########################################################################################################
+	.well-nobg{ 
+	    background: transparent;
+	    .border(1px, solid, @portalWellBorder);
+	    .border-radius-custom (4px, 4px, 4px, 4px);
+	    .box-shadow(inset 0 1px 1px rgba(0, 0, 0, 0.05));
+	}
+
+	.well-step {
+		.well-nobg;
+		margin: 0 10px 20px 0;
+	    min-height: 20px;
+	    padding: 19px 5px 10px 19px;
+/*	    .alert {
+			margin-right: 16px;
+		}*/
+		.blurb {
+			background-color: @portalWellBlurbBg;
+			.color(@portalWellBlurbText);
+			margin: 0 16px 20px 0;
+			padding: 8px 15px 8px 14px;
+			text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+			h4 {
+				color: @portalProgressBarActiveBG;
+				background: none;
+				font-family: inherit;
+			    font-size: 16px;
+			    font-weight: 600;
+			    padding: 5px 0 5px 10px;
+			    margin-bottom: 0;
+			}
+		}
+	}
+
+// ########################################################################################################
+// ########################################################################################################
+// #
+// #
+// #         
+// #         *Widget
+// #         
+// #
+// #
+// ########################################################################################################
+
+	.widget{
+		background: transparent;
+		.border(1px, solid, @portalWellBorder);
+		.box-shadow(inset 0 1px 1px rgba(0, 0, 0, 0.05));
+		h5.header-secondary {
+			background: none repeat scroll 0 0 #D9EDF7; //rgb(208, 233, 255)
+		    font-size: 14px;
+		    font-weight: 300;
+		    height: 26px;
+		    line-height: 26px;
+		    margin: 15px 5px 0;
+		    text-indent: 5px;
+		}
+
+	}
+
+
+} // End portal
