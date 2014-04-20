@@ -1,0 +1,182 @@
+<html>
+<head>
+  <title>Test Angular</title>
+  <style type="text/css">
+    div[ng-app] { margin: 10px; }
+    form[name="editableForm"] > div {
+      height: auto;
+      padding: 5px 0;
+    }
+
+    form[name="editableForm"] .title {
+      display: inline-block;
+      font-weight: bold;
+      padding-top: 5px;
+      vertical-align: top;
+      min-width: 90px;
+    }
+
+    form[name="editableForm"] .editable {
+      display: inline-block;
+      padding-top: 5px;
+      vertical-align: top;
+    }
+
+    form[name="editableForm"] select {
+      width: 120px;
+    }
+  </style>
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
+  <script type="text/javascript" src="js/angular-mock.js"></script>
+  <script type="text/javascript" src="js/xeditable.js"></script>
+  <script type="text/javascript">
+    var app = angular.module("app", ["xeditable", "ngMockE2E"]);
+
+    app.run(function(editableOptions) {
+      editableOptions.theme = 'bs3';
+    });
+
+    app.controller('Ctrl', function($scope, $filter, $http) {
+     $scope.user = {
+        // id: 1,
+        name: 'Fred Flare Jones',
+        sex: 'Male',
+        applehealthcare: 'Yes',
+        dob: '05/09/1990',
+        ssn1: '111',
+        ssn2: '22',
+        ssn3: '3333',
+      };
+
+      $scope.sex = [
+        {value: 1, text: 'Male'},
+        {value: 2, text: 'Female'},
+      ];
+
+      $scope.statuses = [
+        {value: 1, text: 'apple'},
+        {value: 2, text: 'berry'},
+        {value: 3, text: 'banana'},
+        {value: 4, text: 'papaya'}
+      ];
+
+      $scope.applehealthcare = [
+        {value: 1, text: 'Yes'},
+        {value: 2, text: 'No'},
+      ]
+
+      $scope.citizen = [
+        {value: 1, text: 'Yes'},
+        {value: 2, text: 'No'},
+      ]
+
+      $scope.ethnicity = [
+        {value: 1, text: 'Asian'},
+        {value: 2, text: 'Persian'},
+      ]
+
+      $scope.saveUser = function() {
+        // $scope.user already updated!
+        return $http.post('/saveUser', $scope.user).error(function(err) {
+          if(err.field && err.msg) {
+            // err like {field: "name", msg: "Server-side error for this username!"}
+            $scope.editableForm.$setError(err.field, err.msg);
+          } else {
+            // unknown error
+            $scope.editableForm.$setError('name', 'Unknown error!');
+          }
+        });
+      };
+    });
+
+    // ---------------- mock $http requests --------------------
+    app.run(function($httpBackend) {
+
+      $httpBackend.whenPOST(/\/saveUser/).respond(function(method, url, data) {
+        data = angular.fromJson(data);
+        if(data.name === 'error') {
+          return [500, {field: 'name', msg: 'Server-side error for this username!'}];
+        } else {
+          return [200, {status: 'ok'}];
+        }
+      });
+    });
+  </script>
+</head>
+<body>
+
+<h4>NMHIX Spouse Summary Page</h4>
+<div ng-app="app" ng-controller="Ctrl">
+ <form editable-form name="editableForm" onaftersave="saveUser()">
+
+    <!-- editable username (text with validation) -->
+    <div>
+      <span class="title">Name: </span>
+      <!-- <span editable-text="user.name" e-name="name" onbeforesave="checkName($data)" e-required>{{ user.name || 'empty' }}</span> -->
+      <span editable-text="user.name">{{ user.name || 'Set a name' }}</span>
+    </div>
+
+    <!-- Applying for HC? -->
+    <div>
+      <span class="title">Applying for health care: </span>
+      <span editable-select="user.applehealthcare" e-name="applehealthcare" e-ng-options="s.value as s.text for s in applehealthcare">
+        {{ (applehealthcare | filter:{value: user.applehealthcare})[0].text || user.applehealthcare }}
+      </span>
+    </div>
+
+    <!-- DOB -->
+    <div>
+      <span class="title">DOB: </span>
+      <span editable-date="user.dob">{{ user.dob || 'Set a name' }}</span>
+    </div>
+
+    <!-- Sex -->
+    <div>
+      <span class="title">Sex: </span>
+      <span editable-select="user.sex" e-name="sex" e-ng-options="s.value as s.text for s in sex">
+        {{ (sex | filter:{value: user.sex})[0].text || user.sex }}
+      </span>
+    </div>
+
+    <!-- SSN -->
+    <div>
+      <span class="title">SSN: </span>
+      <!-- <span editable-text="user.name" e-name="name" onbeforesave="checkName($data)" e-required>{{ user.name || 'empty' }}</span> -->
+      <!-- <span editable-text="user.ssn1">{{ user.ssn || user.ssn1 +"-"+ user.ssn2 +'-'+ user.ssn3 }}</span> -->
+      <span>
+        <span editable-text="user.ssn1">{{ user.ssn || user.ssn1 }}</span>
+        <span editable-text="user.ssn2">{{ user.ssn || user.ssn2 }}</span>
+        <span editable-text="user.ssn3">{{ user.ssn || user.ssn3 }}</span>
+      </span>
+    </div>
+
+    <!-- Citizen -->
+    <div>
+      <span class="title">Citizen: </span>
+      <span editable-select="user.citizen" e-name="citizen" e-ng-options="s.value as s.text for s in citizen">
+        {{ (citizen | filter:{value: user.citizen})[0].text || 'Unknown' }}
+      </span>
+    </div>
+
+    <!-- button to show form -->
+    <div>
+      <button type="button" class="btn btn-default" ng-click="editableForm.$show()" ng-show="!editableForm.$visible">
+        Edit
+      </button>
+      <!-- buttons to submit / cancel form -->
+      <span ng-show="editableForm.$visible">
+        <button type="submit" class="btn btn-primary" ng-disabled="editableForm.$waiting">
+          Save
+        </button>
+        <button type="button" class="btn btn-default" ng-disabled="editableForm.$waiting" ng-click="editableForm.$cancel()">
+          Cancel
+        </button>
+      </span>
+    </div>
+
+  </form>
+</div>
+
+
+</body>
+</html>
