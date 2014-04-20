@@ -119,6 +119,22 @@
 <div ng-app="app" ng-controller="Ctrl">
  <form editable-form name="editableForm" onaftersave="saveUser()">
 
+    <!-- Edit button to show form -->
+    <div>
+      <button type="button" class="btn btn-default" ng-click="editableForm.$show()" ng-show="!editableForm.$visible">
+        Edit
+      </button>
+      <!-- buttons to submit / cancel form -->
+      <span ng-show="editableForm.$visible">
+        <button type="submit" class="btn btn-primary" ng-disabled="editableForm.$waiting">
+          Save
+        </button>
+        <button type="button" class="btn btn-default" ng-disabled="editableForm.$waiting" ng-click="editableForm.$cancel()">
+          Cancel
+        </button>
+      </span>
+    </div>
+
     <!-- editable username (text with validation) -->
     <div>
       <span class="title">Name: </span>
@@ -197,22 +213,6 @@
       <span class="title"> Special Circumstances: </span>
       <span editable-text="user.special" e-name="special" e-ng-options="s.value as s.text for s in special">
         {{ (special | filter:{value: user.special})[0].text || user.special }}
-      </span>
-    </div>
-
-    <!-- button to show form -->
-    <div>
-      <button type="button" class="btn btn-default" ng-click="editableForm.$show()" ng-show="!editableForm.$visible">
-        Edit
-      </button>
-      <!-- buttons to submit / cancel form -->
-      <span ng-show="editableForm.$visible">
-        <button type="submit" class="btn btn-primary" ng-disabled="editableForm.$waiting">
-          Save
-        </button>
-        <button type="button" class="btn btn-default" ng-disabled="editableForm.$waiting" ng-click="editableForm.$cancel()">
-          Cancel
-        </button>
       </span>
     </div>
 
