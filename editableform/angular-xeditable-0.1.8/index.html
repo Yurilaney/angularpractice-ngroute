@@ -46,6 +46,11 @@
         ssn1: '111',
         ssn2: '22',
         ssn3: '3333',
+        ethnicity: 'Persian',
+        street: '2845 Polk Street',
+        city: 'San Francisco',
+        state: 'California',
+        special: 'n/a',
       };
 
       $scope.sex = [
@@ -73,6 +78,11 @@
       $scope.ethnicity = [
         {value: 1, text: 'Asian'},
         {value: 2, text: 'Persian'},
+      ]
+
+      $scope.state = [
+        {value: 1, text: 'CA'},
+        {value: 2, text: 'MA'},
       ]
 
       $scope.saveUser = function() {
@@ -155,6 +165,38 @@
       <span class="title">Citizen: </span>
       <span editable-select="user.citizen" e-name="citizen" e-ng-options="s.value as s.text for s in citizen">
         {{ (citizen | filter:{value: user.citizen})[0].text || 'Unknown' }}
+      </span>
+    </div>
+
+    <!-- Ethnicity -->
+    <div>
+      <span class="title">Ethnicity: </span>
+      <span editable-select="user.ethnicity" e-name="ethnicity" e-ng-options="s.value as s.text for s in ethnicity">
+        {{ (ethnicity | filter:{value: user.ethnicity})[0].text || user.ethnicity }}
+      </span>
+    </div>
+
+    <!-- Address -->
+    <div>
+      <span class="title">Address: </span>
+      <span>
+        <span editable-text="user.street" e-name="street" e-ng-options="s.value as s.text for s in street">
+          {{ (street | filter:{value: user.street})[0].text || user.street + ","}}
+        </span>
+        <span editable-text="user.city" e-name="city" e-ng-options="s.value as s.text for s in city">
+          {{ (city | filter:{value: user.city})[0].text || user.city  + ","}}
+        </span>
+        <span editable-select="user.state" e-name="state" e-ng-options="s.value as s.text for s in state">
+          {{ (state | filter:{value: user.state})[0].text || user.state }}
+        </span>
+      </span>
+    </div>
+
+    <!-- Special Circumstances -->
+    <div>
+      <span class="title"> Special Circumstances: </span>
+      <span editable-text="user.special" e-name="special" e-ng-options="s.value as s.text for s in special">
+        {{ (special | filter:{value: user.special})[0].text || user.special }}
       </span>
     </div>
 
