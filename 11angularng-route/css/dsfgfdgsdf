@@ -1,0 +1,45 @@
+<div class="gutter10">
+  <h3>Select the life change event(s) you would like to report</h3>
+  <ul id="selectionOptions" class="checkboxes">
+    <li><label for="checkbox1" class="hide">checkbox1</label><input id="checkbox1" type="checkbox" aria-label="checkbox1">Marital Status</li>
+    <li><label for="checkbox2" class="hide">checkbox2</label><input id="checkbox2" type="checkbox" aria-label="checkbox2">Number of Dependents</li>
+    <li><label for="checkbox3" class="hide">checkbox3</label><input id="checkbox3" type="checkbox" aria-label="checkbox3">Loss of Minimum Essential Coverage</li>
+    <li><label for="checkbox4" class="hide">checkbox4</label><input id="checkbox4" type="checkbox" aria-label="checkbox4">Incarceration</li>
+    <li><label for="checkbox5" class="hide">checkbox5</label><input id="checkbox5" type="checkbox" aria-label="checkbox5">Lawful Presence</li>
+    <li><label for="checkbox6" class="hide">checkbox6</label><input id="checkbox6" type="checkbox" aria-label="checkbox6">Change in Residence or Mailing Address</li>
+    <li><label for="checkbox7" class="hide">checkbox7</label><input id="checkbox7" type="checkbox" aria-label="checkbox7">Income</li>
+    <li><label for="checkbox8" class="hide">checkbox8</label><input id="checkbox8" type="checkbox" aria-label="checkbox8">Gain Other Minimum Essential Coverage
+      <!-- Received Minimum Essential Coverage from Other Sources --></li>
+  </ul>
+
+  <div class="pull-right">
+    <dl class="dl-horizontal">
+      <dt>
+        <form>
+          <input type="button" value="Back" class="btn btn-secondary" onclick="history.go(-1);return false;">
+        </form>
+      </dt>
+      <dd>
+        <form action="1/index.html">
+          <button class="btn btn-primary">Next</button>
+        </form>
+      </dd>
+    </dl><!-- dl-horizontal pull-right -->
+  </div>
+</div>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('.show').show();
+    $("#selectionOptions input[type='checkbox']").each(function(index){
+      $(this).on("click", function(){
+        if($(this).is(':checked') == true){
+          $('#selectedItems .selectedItem' + index).show();
+          $('.show').hide();
+        }else if ($(this).is(':checked') == false) {
+          $('#selectedItems .selectedItem' + index).hide();
+        }
+      })
+    });
+  })
+</script>

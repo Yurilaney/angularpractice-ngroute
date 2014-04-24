@@ -1,0 +1,1518 @@
+
+
+
+// ########################################################################################################
+// ########################################################################################################
+// #
+// #
+// #
+// #          LOCAL - RESET
+// #
+// #
+// #
+// ########################################################################################################
+
+.dropdown-menu,
+.tooltip {
+  border-radius: 0!important;
+}
+
+// this is to remover gradien on hover from dropdown for IE8
+.dropdown-menu li > a:hover, 
+.dropdown-menu li > a:focus, 
+.dropdown-submenu:hover > a {
+  -ms-filter: "progid:DXImageTransform.Microsoft.gradient(enabled=false)";
+}
+
+
+#rightpanel .header #myinfo-edit { //used on shop/employee/spplanselection/myinfo page causing extra padding to the button
+  padding:0 12px;
+}
+
+label, 
+label.error{
+  text-transform: capitalize;
+}
+label.checkbox {
+  text-transform: none;
+}
+
+
+// ########################################################################################################
+// ########################################################################################################
+// #
+// #
+// #
+// #          GENERAL SETUP & MIXINS
+// #
+// #
+// #
+// ########################################################################################################
+
+@serifFontFamily-1: "Merriweather", serif;
+@sansFontFamily:    "Droid Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+@sansFontFamily-1:  "Helvetica Neue", Helvetica, Arial, sans-serif;
+@sansFontFamily-2:  "Droid Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+@borderColor:       #e9e9e9;
+@burgColor:         #7e183f;
+@white:             #fff;
+@linkColor:         #1f5a7e;
+@linkColorHover:    darken(@linkColor, 5%);
+
+@errorText:               #b94a48;
+@errorBackground:         #f2dede;
+@errorBorder:             darken(spin(@errorBackground, -10), 3%);
+
+body {
+  background: @white url('../img/NM-BG.png') repeat top left;
+  font-size: 13px!important;
+  font-family: @sansFontFamily-2;
+}
+
+h1 {
+  font-family: @serifFontFamily-1;
+  font-size: 18px!important; //size as per NM website http://www.nmhix.com/about-nmhix/exchange-board-members/
+  line-height: normal;
+  font-weight: normal;
+  & small {
+    font-size: 14px;
+  }
+  img {
+    margin-right: 15px;
+    width: 130px;
+    height: 100px;
+  }
+}
+
+h2 {
+  font-family: @serifFontFamily-1;
+  font-size: 20px;
+  line-height: 20px;
+}
+
+// this is a slideshow header element located on the home page 
+  .slide h2{ 
+    color: #7e183f;
+    font-family: @serifFontFamily-1;
+    font-size: 26px;
+    font-weight: normal;
+  }
+
+h3 {
+  font-family: @serifFontFamily-1;
+  font-weight: normal;
+  font-size: 18.5px;
+}
+
+h5 {
+  font-size: 12px;
+}
+a {
+  color:@linkColor;
+  &:hover {
+    color: darken(@linkColor, 10%);
+    text-decoration: none;
+  }
+  &.breadcrumb-nav {
+    font-size: 14px;
+    text-transform: lowercase;
+    margin: 0 10px 0 5px;
+    &:before {
+      content: "\f104";
+      font-family: FontAwesome;
+      font-size: 12px;
+      margin-right: 5px;
+    }
+  }
+}
+
+label {
+  margin-bottom: 0;
+  font-size: 13px;
+}
+
+legend {
+  font-size:  15px;
+  color: @burgColor;
+  font-weight: bold;
+}
+
+select,
+textarea, 
+input[type="text"], 
+input[type="password"], 
+input[type="datetime"], 
+input[type="datetime-local"], 
+input[type="date"], 
+input[type="month"], 
+input[type="time"], 
+input[type="week"], 
+input[type="number"], 
+input[type="email"], 
+input[type="url"], 
+input[type="search"], 
+input[type="tel"], 
+input[type="color"] 
+.uneditable-input {
+  .border-custom;
+  box-shadow: none;
+  font-size:13px;
+}
+
+
+
+
+
+// ############## CLASSES ################## 
+
+.alert {
+  margin-top:0;
+}
+.accordion-group {
+  .border-custom;
+}
+
+.accordion-inner {
+  .border-custom;
+  border-right:none;
+  border-bottom:none;
+  border-left:none;
+}
+.border-radius (@radius: 4px) {
+  -webkit-border-radius: @radius;
+  -moz-border-radius:    @radius;
+  border-radius:         @radius;
+}
+.bgBox {
+  border-radius: 0!important;
+  //background: #b3c4db url('../img/NM-BG.png') repeat top left!important;
+}
+.box-loose {
+  border-radius: 0!important;
+  border: 1px solid @borderColor;
+}
+.border-custom {
+  border: 1px solid @borderColor;
+}
+.line {
+  .border-custom;
+  border-top:none;
+  border-right:none;
+  border-bottom:none;
+}
+
+.plans-container {
+  .border-custom;
+  border-top:none;
+  border-bottom: none;
+}
+.small {
+  //font-family: @sansFontFamily-2;
+  font-size: 10px;
+}
+p.small {
+  font-size:12px;
+}
+.thumbnail {
+  .border-custom;
+}
+.well-custom {
+  background: transparent;
+  border-radius: 0;
+  padding-right: 0;
+  padding-left: 0;
+  box-shadow: none;
+  border: none;
+}
+
+
+// ########################################################################################################
+// ########################################################################################################
+// #
+// #
+// #
+// #          *ICONS
+// #
+// #
+// #
+// ########################################################################################################
+
+@iconColor: #5485a3;
+.mixins-icons-color {color: #5485a3;}
+
+a [class^="icon-"],
+a [class*=" icon-"] {
+  text-decoration: none;
+  font-size: 14px;
+  padding:3px;
+}
+.active a .icon-ok {color:#666;}
+.icon-question-sign {.mixins-icons-color;}
+.icon-cog {.mixins-icons-color;}
+.icon-share-alt, //Both icons located on the /broker/dashboard page, under Quick Links. Anywhere else??
+.icon-user {color: orange!important;}
+.icon-eye-open {color: #666;}
+
+
+// ########################################################################################################
+// ########################################################################################################
+// #
+// #
+// #
+// #          *HEADERS
+// #
+// #
+// #
+// ########################################################################################################
+
+.mixins-nm-header-font-size {font-size: 13px;}
+.mixins-nm-header {
+  font-family: @serifFontFamily-1; 
+  font-weight: normal!important;
+}
+
+// This is a horizontal line located under main page header (example would be line under "login")
+#titlebar, 
+#main.titlebar,
+.titlebar {
+  border-bottom: 1px solid #ececec;
+  width:100%;
+  margin-bottom: 20px;
+//:after used to split the line with 2 different colors as per styleguide;
+  &:after { 
+    border-bottom: 1px solid #65a2be;
+    width: 11.2%;
+    position: absolute; //positioned absolute in order for the line to be placed right on top of the first one... make sence?  
+  }
+}
+
+//This is a header box styling. 
+//Also see additional header styling in RIGHTPANEL section
+#sidebar h4,  
+#sidebar .header,
+#sidebar .header h4,
+#sidebar .accordion-heading a, //this is located in SHOP 
+.header,
+.graydrkbg,
+.table th{
+  .mixins-nm-header;
+  .mixins-nm-header-font-size;
+  min-height: 20px;
+  background: #b3c4db url('../img/NM-header-BG.png') repeat top left!important;
+  i {
+    color: #666;
+  }
+}
+
+
+
+
+
+
+
+// ########################################################################################################
+// ########################################################################################################
+// #
+// #
+// #
+// #          *MASTHEAD
+// #          Theme colors, mixins located below.
+// #
+// #
+// ########################################################################################################
+@mastheadOne:       #629fc6; //blue lighter
+@mastheadTwo:       #70b5e1; //blue darker 
+@mastheadBorder:    #d97b00; //orange
+
+.mixins-masthead-gradient (@startColor: @mastheadOne, @endColor: @mastheadTwo) {
+  background-color: @startColor;
+  background: -webkit-gradient(linear, 0 0, 0 100%, from(@startColor), to(@endColor));
+  background: -webkit-linear-gradient(@startColor, @endColor);
+  background: -moz-linear-gradient(@startColor, @endColor);
+  background: -o-linear-gradient(@startColor, @endColor);
+  background: linear-gradient(@startColor, @endColor);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#629fc6', EndColorStr='#70b5e1');
+}
+
+#masthead {
+//This is used to overwrite ghixcustom.css - could it be removed from there?
+  &.navbar {
+    border-bottom: none!important;
+  }
+//This is Logo Area
+  .brand { 
+    position:absolute;
+    top:-3px;
+    left:45px;
+    padding:13px 10px 8px 10px;
+    max-width: none;
+  }
+//This is a Masthead area itself: background with border 
+  .navbar-inner { 
+    .mixins-masthead-gradient;
+    border-bottom: 5px solid @mastheadBorder;
+  }
+//This is a Masthead menu (Login/Logout, Inbox, My Account etc.)
+  .nav {
+    li {
+      //This is the top level menu link container
+      &.dropdown.open > .dropdown-toggle {
+        background: none;
+        text-shadow: none;
+        box-shadow: none;
+      }
+       //This is the top level menu link itself(Inbox/My Account, etc)
+      a {
+        color: @white;
+      }
+    }
+    .dropdown-toggle {
+      //This is the carot loacted next to the main link in it hover and original states
+      &:hover {
+        .caret {
+          border-bottom-color: @white;
+          border-top-color: @white;
+        }
+      }
+      .caret {
+        border-bottom-color: @white;
+        border-top-color: @white;
+        margin-top: 8px;
+      }
+    }
+    .dropdown-menu {
+      //This is the dropdown menu link container
+      border-radius: 0;
+      //This is the dropdown link itself(Help Center, Phone Number, etc.)
+      li a {
+        color: @linkColor;
+        &:hover,
+        &:focus {
+          background: none;
+        }
+      }
+    }
+  }
+}
+
+//.dropdown-submenu:hover > a - what is it? find the right place for it
+
+
+
+
+// ########################################################################################################
+// ########################################################################################################
+// #
+// #
+// #
+// #          HELPBAR -  located right below the masthead with general help links (find agent, ? , ...) - currently disabled for NM theme, commented out to keep css clean.
+// #                     Please uncomment if required.
+// #
+// #
+// ########################################################################################################
+
+//#navhelp {
+//  h2 {
+//    border-bottom: 1px solid fade(@white, 75%);
+//  }
+//  .nav {
+//    li {
+//      .help-panel {
+//        background-color:@blueDark;
+//        padding:10px 15px 15px 15px;
+//        &:after {
+//          border-bottom: 6px solid @blueDark;
+//        }
+//        h3 {
+//          a {
+//            color: @white;
+//          }
+//        }
+//        a {
+//          color: fade(@white, 85%);
+//          &:hover {
+//            color:@white;
+//          }
+//        }
+//      }
+//    }
+//  }
+//  .dropdown-submenu {
+//    &:hover {
+//      a {
+//        background-color: @blue;
+//      }
+//    }
+//  }
+//}
+
+//.help-shortcut:hover > span.help-icon,
+//.help-shortcut:active > span.help-icon,
+//.help-shortcut:focus > span.help-icon {
+//  color: @white;
+//}
+
+//affects masthead
+//.dropdown-menu li > a:hover, 
+//.dropdown-menu li > a:focus, 
+//.dropdown-submenu:hover > a {
+//  color: @colorThree;
+//  background: none;
+//}
+
+
+
+
+// ########################################################################################################
+// ########################################################################################################
+// #
+// #
+// #
+// #      NAVIGATION BAR - located on the top of each page, right above #sidebar and #righpanel (HOME/EMPLOYERS/MY INFO : example of the content)
+// #
+// #
+// #
+// ######################################################################################################## 
+@navigationOne:       #629fc6; //blue  
+@navigationTwo:       #70b5e1; //blue darker 
+@navigationBorder:    #4a85a8; //blue darker +
+
+.mixins-nav-bar-gradient (@startColor: @navigationOne, @endColor: @navigationTwo) {
+  background-color: @startColor;
+  background: -webkit-gradient(linear, 0 0, 0 100%, from(@startColor), to(@endColor));
+  background: -webkit-linear-gradient(@startColor, @endColor);
+  background: -moz-linear-gradient(@startColor, @endColor);
+  background: -o-linear-gradient(@startColor, @endColor);
+  background: linear-gradient(@startColor, @endColor);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#629fc6', EndColorStr='#70b5e1');
+}
+.mixins-nav-bar-border {border: 1px solid @navigationBorder;} 
+
+#menu { //same id used for the "HOMEPAGE" - menu nav
+  margin-bottom: 0;
+  .navbar-inner { //This is nav bar box - bg color, font color and family...
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 0;
+    .mixins-nav-bar-border;
+    .mixins-nav-bar-gradient;
+    .nav {
+      li a {
+        color: @white;
+        text-shadow: none;
+      }
+      li a i.caret {
+        border-top-color: @white;
+        border-bottom-color: @white;
+      }
+      li.active a{ // This is a active links
+        box-shadow: none;
+        background: none;
+        color: #3d3d3d!important;
+      }
+      li.active a i.caret{ //This is a active link carots
+        border-top-color: #3d3d3d;
+        border-bottom-color: #3d3d3d;
+      }
+      li.open a{ // This is a hover/open links
+        background: none!important;
+        color: #666
+      }
+      li.open a i.caret { //This is a hover/open link caret
+        border-top-color: #666;
+        border-bottom-color: #666;
+      }
+      .dropdown-menu { //This is dropdown down menu when you click on the link/caret
+        border-radius: 0;
+        padding: 0;
+        a {
+          padding: 8px 20px;
+          color: #666;
+          border-bottom: @borderColor;
+          &:hover {
+            background: transparent;
+            color: @linkColorHover;
+          }
+        }
+      }
+    }
+  }
+  //Styles below is being applied to the dropdown menu links, 
+  .navbar .nav li.dropdown.open > .dropdown-toggle, 
+  .navbar .nav li.dropdown.active > .dropdown-toggle, 
+  .navbar .nav li.dropdown.open.active > .dropdown-toggle,
+  .navbar .nav li.dropdown.open > .dropdown-toggle a, 
+  .navbar .nav li.dropdown.active > .dropdown-toggle a,
+  .navbar .nav li.dropdown.active > .dropdown-toggle a i.caret, 
+  .navbar .nav li.dropdown.open.active > .dropdown-toggle a, {
+    background: none!important;
+    text-shadow: none!important;
+    color: orange!important;
+  }
+  a[title="Home"],
+  #menu a[title="Issuer Home"] {
+    font-size: 0;
+    color: transparent;
+    position: relative;
+    margin-right: 10px;
+    &:after {
+      content: "\f015";
+      font-family: FontAwesome;
+      font-size: 14px;
+      color: inherit;
+      position: absolute;
+    }
+  }
+}
+
+
+
+.header-reset {
+  padding-top: 7px;
+  border-left: none;
+}
+
+
+
+// ########################################################################################################
+// ########################################################################################################
+// #
+// #
+// #
+// #          BREADCRUMBS  - Currently disabled! Styles are commented out to keep main css clean.
+// #
+// #
+// #
+// ########################################################################################################
+
+#breadcrumbs,
+.breadcrumb, 
+.page-breadcrumb {
+  display: none;
+}
+
+//.page-breadcrumb {
+//  position:relative;
+//  top:-10px;
+//  li {
+//    font-size: 11px;
+//  }
+//}
+
+//#breadcrumbs .nav-pills {
+//  border: 1px solid lighten(desaturate(@colorThree, 60%), 42%);
+//  border-top:none;
+//  border-right:none;
+//  border-left:none;
+//  margin-bottom:0;
+//}
+
+
+
+// ########################################################################################################
+// ########################################################################################################
+// #
+// #
+// #
+// #          *BUTTONS
+// #
+// #
+// #
+// ########################################################################################################
+
+.mixins-button-font-size {font-size: 13px;}
+.mixins-button-font {font-family: "Droid Sans", "Helvetica Neue", Helvetica, Arial, sans-serif!important;}
+
+.mixins-primary-btn-font-color {color: #fff;}
+.mixins-primary-btn-bg {background: #5586a4;}
+.mixins-primary-btn-bg-hover {background: #38617a;}
+.mixins-primary-btn-border {border: 1px solid #4b7b9a;}
+
+.mixins-primary-btn-active-bg {background: #d37100;}
+.mixins-primary-btn-active-font-color {color: #fff;}
+.mixins-primary-btn-active-border {border: 1px solid #d37100;}
+
+.mixins-secondary-btn-border {border: 1px solid #dedede;}
+.mixins-secondary-btn-bg {background: #f1f1f1;}
+.mixins-secondary-btn-bg-hover {background: #ececec;}
+.mixins-secondary-btn-font-color {color: #7a7a7a;}
+
+
+
+.btn {
+  .mixins-secondary-btn-border;
+  .mixins-secondary-btn-bg;
+  .mixins-secondary-btn-font-color; 
+  //.mixins-button-font; //commented out due to the HIX-16175 - in plan dislplay <a> element has both .btn and .icon-cog classes and this is the reson why icons is not showing...
+  text-shadow: none;
+  &:hover,
+  &:focus {
+    .mixins-secondary-btn-bg-hover;
+  }
+}
+
+.btn-primary{
+  .mixins-primary-btn-font-color;
+  .mixins-primary-btn-bg;
+  .mixins-primary-btn-border;
+  text-shadow:none;
+  &:hover,
+  &:focus { //"&" means ---> .btn-primary:hover, .btn-primary:hover
+    .mixins-primary-btn-bg-hover;
+  }
+  i.icon-cog, // this is when icons are located within the primary button...
+  i.caret {
+    color: #fff;
+  }
+}
+
+a.btn.active {
+  .mixins-primary-btn-active-bg;
+  .mixins-primary-btn-active-border;
+  box-shadow: none;
+}
+
+.header .btn {
+  .mixins-button-font;
+  font-weight: normal;
+}
+
+.plan .btn {
+  padding: 4px 7px;
+  .mixins-button-font-size;
+}
+
+.btn-custom {
+  display: inline-block;
+  padding: 5px 14px;
+  margin-top:10px;
+  min-width: 4px;
+  .border-custom;
+  .border-radius;
+  .mixins-primary-btn-bg;
+}
+
+
+
+
+
+// ########################################################################################################
+// ########################################################################################################
+// #
+// #
+// #
+// #         *SIDEBAR
+// #
+// #
+// #
+// ########################################################################################################
+
+.mixins-sidebar-font-color {color: #666!important;}
+.mixins-sidebar-font-size {font-size: 13px;}
+
+
+// This is a sidebar menu
+#sidebar {
+  .nav-list {
+    li {
+      background: @white!important;
+      .border-custom;
+      border-top: none;
+      padding: 10px;
+      .mixins-sidebar-font-color;
+      .mixins-sidebar-font-size;
+      &:hover { //"&" means ---> li:hover
+        text-decoration: none;
+      }
+      a {
+        .mixins-sidebar-font-color;
+      }
+      a:hover {
+        background: @white!important;
+      }
+    }
+    .active {
+      background: #e8e8e8 url(../img/NM-BG.png) repeat top left!important;
+      margin-left: 0;
+      font-weight: normal;
+      .mixins-sidebar-font-color;
+      .mixins-sidebar-font-size;
+      a, a:hover {
+        font-weight: normal;
+        text-shadow: none;
+        background: transparent!important;
+        .mixins-sidebar-font-color;
+        .mixins-sidebar-font-size;
+      }
+    }
+  }
+  #list-2 {
+    margin-top: 20px;
+  }
+  .box-tight { //to overwrite in ghixcustom.css
+    border-radius: 0!important;
+    border-color: #ebedef!important;
+  }
+  .header { //this added in order for the .header withouth the h4 tag to be the same height, with text in the middle.
+    min-height: 40px;
+    line-height: 40px;
+  }
+  form { //located here: /hix/admin/manageissuer
+    border: 1px solid #ebedef;
+    border-top: none;
+    legend {
+      .mixins-nm-header;
+    }
+  } 
+  #frmSecureInbox {
+    border: none;
+  } 
+}
+
+
+
+table#brokerStatusHistory {
+  .border-custom;
+}
+
+
+//.graybg {
+//  .background-custom;
+//}
+
+
+
+
+
+input[type="radio"] {
+  margin: 0 5px 0 0;
+}
+
+
+
+
+
+// ########################################################################################################
+// ########################################################################################################
+// #
+// #
+// #
+// #         *RIGHTPANEL
+// #
+// #
+// #
+// ########################################################################################################
+.mixins-rightpanel-subhead-bg {background: #eee;}
+
+#rightpanel {
+  h4 {
+    padding:10px;
+    border-top: 1px solid #65a2be;
+    .mixins-rightpanel-subhead-bg;
+    .mixins-nm-header;
+    .mixins-nm-header-font-size;
+    a.btn {
+      font-family: @sansFontFamily-2; 
+    }
+  }
+  a.btn {
+    margin: 0 5px;
+  }
+  div.header a.btn,
+  div.header input[type="submit"],
+  button.btn.btn-small { //this maddness located on shop/spplanselection/editmyinfo
+    margin: 10px 5px;
+    .mixins-button-font;
+  }
+  .graydrkaction, 
+  .graylightaction, 
+  .header {  
+    height:40px; //This specific height is used when inside the <div class="header"> present <h4> + <a class="btn">. Testing needed tho....
+    background: #b3c4db url('../img/NM-header-BG.png') repeat top left!important;
+    h4 {
+      background: none;
+      border-top: none;
+    }
+    a.btn {
+      .mixins-secondary-btn-bg;
+    }
+    a.btn-primary {
+      .mixins-primary-btn-bg;
+    }
+  }
+  .table td h4 { //This styling is applied to agents names located in the table td.....
+    background: none;
+    border-top: none;
+    padding: 0;
+    font-size: 18px!important;
+  }
+  .light{
+    opacity: 1!important;
+  }
+  .accordion-header {
+    .mixins-rightpanel-subhead-bg;
+  }
+}
+
+
+// ########################################################################################################
+// ########################################################################################################
+// #
+// #
+// #
+// #          *HOMEPAGE
+// #
+// #
+// #
+// ########################################################################################################
+#menu { //same id used for the "navbar", so be careful!
+  li.act a{
+    .border-custom;
+    background: @white;
+    color: #7e183f;
+  } 
+}
+
+
+// ########################################################################################################
+// ########################################################################################################
+// #
+// #
+// #
+// #        *PLAN SELECTION: specific styles for PS goes in here
+// #
+// #
+// #
+// ########################################################################################################
+
+.mixins-PS-insert-box-shadow {
+  box-shadow:inset 0px 0px 9px rgba(0,0,0,.3);
+  -webkit-box-shadow:inset 0px 0px 9px rgba(0,0,0,.3);
+  -moz-box-shadow:inset 0px 0px 9px rgba(0,0,0,.3);
+}
+
+#planSelect {
+  #titlebar:after{
+    border-bottom: none;
+    position:static;
+    width: auto;
+  }
+    .scroll-left-arrow,
+    .scroll-right-arrow {
+      background: transparent;
+      &:hover { //"&" means ---> #planSelect:hover
+        background: transparent;
+      }
+    }
+    .icon-arrow-left,
+    .icon-arrow-right {
+      //color: @white; //commented out due hix-17966
+      opacity: 1!important;
+    }
+  }
+
+.plan a.addtofav.addedToFav {
+  color: @white;
+  .mixins-PS-insert-box-shadow;
+}
+
+.intro-indiv h4, 
+#titlebar h3,
+h3#titlebar 
+{
+  color: #7e183f!important; //to overite ghixcustom.css
+}
+
+
+.plans-section-header h3 {
+  .border-custom;
+  border-right: none;
+  border-bottom: none;
+  border-left: none;
+  margin:0;
+  padding-left:15px;
+  color: darken(@linkColor, 5%)!important;
+  font-size: 14px;
+} 
+
+
+
+// ########################################################################################################
+// ########################################################################################################
+// #
+// #
+// #
+// #        *PLANDISPLAY: 
+// #
+// #
+// ########################################################################################################
+
+
+
+
+.plans-section-content {
+  .label-info {
+    font-size: 13px;
+    font-family: @sansFontFamily;
+    font-weight: normal !important;
+    background: @errorBackground;
+    color: @errorText;
+    border: @errorBorder;
+    .border-radius;
+  }
+  h3 {
+    text-transform: none;
+  }
+  .plan {
+    overflow-y: hidden;
+  }
+}
+
+
+// ########################################################################################################
+// ########################################################################################################
+// #
+// #
+// #
+// #        *PLANDISPLAY/BENCHMARKPLAN & TIERDETAILS: 
+// #        styles for plandisplay pages located in shopstyles.css
+// #
+// ########################################################################################################
+
+@planDisplayHeaderBgColor: #e2dfd7;
+@planDisplayHeaderFontColor: #4f4f4f;
+@planDisplayHeaderNavIconsColor: #1d73b6; 
+
+#benchmark,
+#tierdetails {
+    #titlebar {
+        background: @planDisplayHeaderBgColor;
+        h3 {
+            color: @planDisplayHeaderFontColor;
+        }
+        span#sort {
+            float: right;
+        }
+    }
+    .scroll-right-arrow-wrapper,
+    .scroll-left-arrow-wrapper {
+        height: 112px;
+        background: @planDisplayHeaderBgColor;
+        .scroll-left-arrow,
+        .scroll-right-arrow {
+            background: none;
+            &:hover {
+                background: inherit;
+            }
+            h1 {
+                color: @planDisplayHeaderNavIconsColor;
+                i {
+                    color: inherit;
+                    &:hover {
+                        opacity: 0.8;
+                    }
+                }
+            }
+        }
+    }
+}
+
+#tierdetails {
+    #titlebar {
+      margin-bottom: 0;
+    }
+    .plans-section {
+        border-left: 1px solid @borderColor;
+        table.planNameWrap {
+          td.planName {
+            text-align: center!important;
+          }
+        }
+    }
+}
+
+#plansbar,
+#benchmark,
+#tierdetails {
+  #pagination {
+    li {
+      &.active {
+        a {
+          color: #4f4f4f!important;
+        }
+      }
+      a {
+        &:hover {
+          color: #333!important;
+        }
+      }
+    }
+  }
+}
+
+
+// ########################################################################################################
+// ########################################################################################################
+// #
+// #
+// #
+// #        *SHOP: 
+// #
+// #
+// ########################################################################################################
+
+.enrollmentPeriodDate { //!important used to overwrite ghixcustom.css - will need to remove....
+  border-radius: 0!important;
+  &:hover {
+    border-color: @borderColor!important;
+    background-image: none!important;
+    background: #f7f7f7;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+// ########################################################################################################
+// ########################################################################################################
+// #
+// #
+// #
+// #         *CALENDAR within rightpanel
+// #
+// #
+// #
+// ########################################################################################################
+@calendarOne:           #66abe2; //blue
+@calendarTwo:           #5894c3; //darker blue
+@calendarContentColor:  #666;
+@calendarContentBorder: #333;
+
+.mixins-calendar-gradient (@startColor: @calendarOne, @endColor: @calendarTwo) {
+    background-color: @startColor;
+    background: -webkit-gradient(linear, left top, left bottom, from(@startColor), to(@endColor));
+    background: -webkit-linear-gradient(top, @startColor, @endColor);
+    background: -moz-linear-gradient(top, @startColor, @endColor);
+    background: -ms-linear-gradient(top, @startColor, @endColor);
+    background: -o-linear-gradient(top, @startColor, @endColor);
+  }
+
+.calSheet {
+  .month {
+    .mixins-calendar-gradient;
+    border: 1px solid @calendarTwo;
+    border-radius: 2px 2px 0 0;
+    color: @white;
+  }
+  .day {
+    border-radius: 0 0 2px 2px;
+    border-right: 1px solid lighten(@calendarContentBorder, 10%);
+    border-bottom: 1px solid @calendarContentBorder;
+    border-left: 1px solid @calendarContentBorder;
+    color: @calendarContentColor;
+    font-weight: bold;
+    letter-spacing: -0.1em;
+    line-height: 1.4em;
+  }
+}
+
+
+
+// ########################################################################################################
+// ########################################################################################################
+// #
+// #
+// #
+// #         *TABLE within rightpanel
+// #
+// #
+// #
+// ########################################################################################################
+.mixins-table-font-size {font-size: 13px;}
+.mixins-table-tr-font {font-family: "Droid Sans", "Helvetica Neue", Helvetica, Arial, sans-serif!important;}
+.mixins-table-th-font {font-family: "Merriweather", serif!important;}
+.mixins-table-th-font-color {color: #666!important;}
+.mixins-table-tr-bg {background: lighten(desaturate(#19B9CA, 40%), 52%);}
+
+
+.table{
+  border: 1px solid #ebedef;
+  margin-bottom: 15px!important;
+  th{
+    &.sortable {
+      img {
+        display:none;
+      }
+    }
+    a {
+      background: none!important; //important added to overwrite inline styles added to some pages. Example: /hix/admin/manageissuer 
+      font-weight: normal;
+      .mixins-table-th-font-color;
+      .mixins-table-th-font; 
+      &.btn { //"&" means that a has class btn ---> <a class="btn">
+        .mixins-secondary-btn-border;
+        .mixins-secondary-btn-bg;
+        .mixins-secondary-btn-font-color;
+      }
+    }
+    &.txt-right {
+        text-transform: capitalize;
+    }
+  }
+  td {
+    h4 {
+      background: none;
+    }
+    .border-custom;
+      font-size: 12px;
+      border-right: none;
+      border-bottom: none;
+      border-left:none;
+    .caret{
+      border-top: 4px solid @iconColor;
+    }
+    .dropdown-menu li > a:hover { //this is a dropdown menu located in tables (cog element --> hover --> will see this)
+      background: none;
+      color:@linkColorHover;
+    }
+    &.txt-right {
+        text-transform: capitalize;
+    }
+  }
+  tbody {
+    tr {
+      th {
+        background: @white!important;
+      }
+    }
+    th {
+      .mixins-table-tr-font;
+    }
+  }
+}
+
+.lightgray, 
+.table-striped tbody > tr:nth-child(odd) > td, 
+.table-striped tbody > tr:nth-child(odd) > th {
+  .mixins-table-tr-bg;
+}
+
+.graydrkbg thead tr, 
+thead tr.graydrkbg {
+  border-top: none;
+  border-bottom: none;
+}
+
+
+
+// ########################################################################################################
+// ########################################################################################################
+// #
+// #
+// #
+// #         *FORMS within rightpanel
+// #
+// #
+// #
+// ########################################################################################################
+form {
+  &#frmesign { //Provide eSignature page
+    h2 {
+      margin-left: 0;
+    }
+  }
+}
+.form-actions {
+  .border-custom;
+  border-right: none;
+  border-bottom: none;
+  border-left: none;
+  margin-top: 10px;
+}
+
+
+
+
+
+// ########################################################################################################
+// ########################################################################################################
+// #
+// #
+// #
+// #         *PAGINATION within rightpanel
+// #
+// #
+// #
+// ########################################################################################################
+
+.pagination ul > li > a, 
+.pagination ul > li > span {
+  .border-custom;
+  color: @burgColor;
+}
+
+.pagination ul > li:first-child > a,
+.pagination ul > li:last-child > a {
+  border-radius:0!important;
+}
+ 
+.pagination ul > .active > a, 
+.pagination ul > .active > span {
+  background: lighten(desaturate(#407A65, 10%), 55%);
+  color: lighten(@burgColor,20%);
+}
+.pagination ul > li > a:hover {
+  background: lighten(desaturate(#407A65, 5%), 38%);
+}
+
+
+
+
+// ########################################################################################################
+// ########################################################################################################
+// #
+// #
+// #
+// #         *FOOTER
+// #
+// #
+// #
+// ########################################################################################################
+
+#footer.container ul.nav li a:hover {
+  color: @linkColor;
+}
+
+
+
+
+
+
+
+
+// ########################################################################################################
+// ########################################################################################################
+// #
+// #
+// #
+// #         *DATEPICKER
+// #
+// #
+// #
+// ########################################################################################################
+
+.datepicker td.active, 
+.datepicker td.active:hover, 
+.datepicker td.active:hover:hover, 
+.datepicker td.active:active, 
+.datepicker td.active:hover:active, 
+.datepicker td.active.active, 
+.datepicker td.active:hover.active, 
+.datepicker td.active.disabled, 
+.datepicker td.active:hover.disabled, 
+.datepicker td.active[disabled], 
+.datepicker td.active:hover[disabled] {
+  background-color: red!important;
+  border-radius: 0!important;
+}
+
+
+
+// ########################################################################################################
+// ########################################################################################################
+// #
+// #
+// #
+// #         *MODAL
+// #
+// #
+// #
+// ########################################################################################################
+
+
+.markCompleteHeader { //located here: /admin/broker/viewcertificationinformation/156
+  .header {
+    height: 40px;
+    h4 {
+      margin-left:10px!important;//to overwrite ghixcustom.css
+      color: #666!important;
+      line-height: 40px!important;
+      font-weight: normal!important;
+    }
+    button.dialogClose {
+      background: transparent!important;
+      line-height: 40px;
+      margin-right: 10px!important;
+      color:#666!important;
+    }
+  }
+}
+
+#viewempModal {
+  .modal-header {
+    height: 40px;
+    h4 {
+      margin-left:10px!important;
+      color: #666!important;
+      line-height: 40px!important;
+      font-weight: normal!important;
+    }
+    button {
+      background: transparent!important;
+      line-height: 40px;
+      margin-right: 10px!important;
+      color:#666!important;
+    }
+  }
+}
+
+#brokerdetail { ///hix/shop/employer/dashboard. File name list.jsp
+  table#list {
+    thead {
+      tr {
+        height: 40px;
+      }
+    }
+    tbody {
+      tr {
+        td {
+          a {
+            h4 {
+              font-size: 14px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+#frmdetail {
+  #display-info {
+    tbody {
+      tr {
+        th {
+          background: #fff!important;
+        }
+      }
+    }
+  }
+}
+
+div#alert1.modal { //shop/employer/employercomments/216#
+  top: 15%;
+}
+
+.modal-header {
+  background: #b3c4db url('../img/NM-header-BG.png') repeat top left;
+  border-radius: 6px 6px 0 0;
+  min-height: 20px;
+  h4 {
+    font-family: @serifFontFamily-1;
+    font-size: 15px;
+    font-weight: normal;
+  }
+  .close {
+    margin-top: 0;
+  }
+}
+.modal-footer {
+  background: none;
+  border-top: none;
+}
+.hugeModal { //!important used to overwrite "bigModal" in ghixcustom.css
+  width: 767px!important;
+  margin-left: -350px!important;
+  height: 460px;
+}
+
+#qualified-event{
+  .modal-body{
+    max-height:315px;     
+  }
+}
+
+
+// ########################################################################################################
+// ########################################################################################################
+// #
+// #
+// #
+// #         *IFRAME
+// #
+// #
+// #
+// ########################################################################################################
+
+#successbox .modal-header {
+  background: none;
+  border-radius:0;
+}
+
+iframe {
+  border:0px;
+  #successbox {
+    .header {
+      background: none;
+      background-image: none;
+      -ms-filter: "progid:DXImageTransform.Microsoft.gradient(enabled=false)";
+    }
+  }
+  &#success {
+    .modal-header {
+      border-radius: 6px 6px 0 0;
+    }
+    .modal-body {
+      padding:0;
+    }
+  }
+  &#search {
+    min-height: 520px; /*Changed from 430px to 520px - HIX-19095*/
+    h3 {
+      font-size: 18.5px;
+    }
+    .bottomBorder {
+      border-bottom: none!important;
+    }
+  }
+  body {
+    background: #fff;
+    background-image: none;
+  }
+}
+
+body.shellmodal-body {
+  background: #fff!important;
+  .table {
+    border: none;
+  }
+}
+
+#Dental-light_box {
+  #title {
+    font-family: @serifFontFamily-1;
+    font-weight: normal;
+    font-size: 17px;
+  }
+  #info {
+    margin: 20px 0 25px 0;
+  }
+  .premium {
+    font-size: 17px;
+  }
+  .plan {
+    margin: 0 10px;
+    .border-custom;
+  }
+  .form-actions {
+    background: #fff;
+    border: none;
+  }
+}
